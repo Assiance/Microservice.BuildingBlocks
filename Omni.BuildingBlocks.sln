@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29324.140
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omni.BuildingBlocks", "Omni.BuildingBlocks\Omni.BuildingBlocks.csproj", "{58AE91EB-DB53-4848-B27A-F138FA232AB0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58AE91EB-DB53-4848-B27A-F138FA232AB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58AE91EB-DB53-4848-B27A-F138FA232AB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58AE91EB-DB53-4848-B27A-F138FA232AB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58AE91EB-DB53-4848-B27A-F138FA232AB0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {847B4F4D-D6BC-4F96-8B16-D17A102BB859}
+	EndGlobalSection
+EndGlobal
