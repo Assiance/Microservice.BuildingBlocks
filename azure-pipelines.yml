@@ -42,11 +42,9 @@ steps:
 # This will push any .nupkg files to the 'TestFeed' artifact feed
 # allowPackageConflicts allows us to build the same version and not throw an error when trying to push
 # instead it just ingores the latest package unless the version changes
-- task: NuGetAuthenticate@0
-  displayName: 'NuGet Authenticate'
 - task: NuGetCommand@2
-  displayName: 'NuGet push'
   inputs:
     command: 'push'
-    publishVstsFeed: 'OmniFeed'
-    allowPackageConflicts: false
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'f9c98369-292d-414e-ab75-7fa536f082a5/12a50060-cd9d-4df0-b9d1-63f2cf5c4aef'
