@@ -6,7 +6,7 @@ namespace Omni.BuildingBlocks
 {
     public static class CommonDependencyRegistration
     {
-        public static IServiceCollection RegisterCommonDependencies(this IServiceCollection services)
+        public static IServiceCollection RegisterOmniBuildingBlockDependencies(this IServiceCollection services)
         {
             return services.RegisterAssemblyPublicNonGenericClasses(Assembly.GetExecutingAssembly());
         }
