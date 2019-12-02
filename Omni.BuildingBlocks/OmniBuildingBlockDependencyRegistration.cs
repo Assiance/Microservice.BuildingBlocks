@@ -4,7 +4,7 @@ using Omni.BuildingBlocks.DI;
 
 namespace Omni.BuildingBlocks
 {
-    public static class CommonDependencyRegistration
+    public static class OmniBuildingBlockDependencyRegistration
     {
         public static IServiceCollection RegisterOmniBuildingBlockDependencies(this IServiceCollection services)
         {
