@@ -8,26 +8,26 @@ namespace Omni.BuildingBlocks.Persistence.Extensions
     public static class MigrationHelperExtension
     {
         private static string _migrationFolder = "Migrations";
-        public static void ComposeSqlUp(this MigrationBuilder builder, Type executingType)
+        public static void ComposeSqlUp(this MigrationBuilder builder, Type executingType, string featureName)
         {
-            var sqlString = ReadSqlFile(executingType, "Ups");
+            var sqlString = ReadSqlFile(executingType, "Ups", featureName);
             builder.Sql(sqlString);
         }
 
-        public static void ComposeSqlDown(this MigrationBuilder builder, Type executingType)
+        public static void ComposeSqlDown(this MigrationBuilder builder, Type executingType, string featureName)
         {
-            var sqlString = ReadSqlFile(executingType, "Downs");
+            var sqlString = ReadSqlFile(executingType, "Downs", featureName);
             builder.Sql(sqlString);
         }
 
-        private static string ReadSqlFile(Type executingType, string migrationType)
+        private static string ReadSqlFile(Type executingType, string migrationType, string featureName)
         {
             var myAttribute =
                 (MigrationAttribute)Attribute.GetCustomAttribute(executingType, typeof(MigrationAttribute));
 
             var location = new Uri(Assembly.GetAssembly(executingType).GetName().CodeBase);
             var fileDirectoryInfo = new FileInfo(location.AbsolutePath).Directory;
-            var path = $"{fileDirectoryInfo?.FullName}\\{_migrationFolder}\\{migrationType}\\{myAttribute.Id}.sql";
+            var path = $"{fileDirectoryInfo?.FullName}\\{featureName}\\{_migrationFolder}\\{migrationType}\\{myAttribute.Id}.sql";
             var fileExists = File.Exists(path);
             if (!fileExists)
             {
