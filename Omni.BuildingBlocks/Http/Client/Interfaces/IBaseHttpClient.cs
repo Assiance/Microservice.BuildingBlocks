@@ -5,10 +5,10 @@ namespace Omni.BuildingBlocks.Http.Client.Interfaces
 {
     public interface IBaseHttpClient
     {
-        Task<TResult> PutAsync<T, TResult>(T item, string url);
-        Task<TResult> PostAsync<T, TResult>(T item, string url);
-        Task<TResult> PatchAsync<T, TResult>(T item, string url);
-        Task<TResult> GetAsync<TResult>(string url);
-        Task<TResult> SendAsync<TResult>(HttpRequestMessage request);
+        Task<T> PutAsync<T>(string url, object item);
+        Task<T> PostAsync<T>(string url, object item);
+        Task<T> PatchAsync<T>(string url, object item);
+        Task<T> GetAsync<T>(string url);
+        Task<T> SendAsync<T>(HttpRequestMessage request);
     }
 }

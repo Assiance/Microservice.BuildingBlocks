@@ -42,16 +42,16 @@ namespace Omni.BuildingBlocks.Http.Client
             _logger = logger;
         }
 
-        public async Task<TResult> PutAsync<T, TResult>(T item, string url)
+        public async Task<T> PutAsync<T>(string url, object item)
         {
             var uri = TryGetUri(url);
             var content = GetStringContent(item);
             var response = await _httpClient.PutAsync(uri, content);
 
-            return TryDeserializeObject<TResult>(response.Content.ReadAsStringAsync().Result, nameof(this.PutAsync));
+            return TryDeserializeObject<T>(response.Content.ReadAsStringAsync().Result, nameof(this.PutAsync));
         }
 
-        public async Task<TResult> SendAsync<TResult>(HttpRequestMessage request)
+        public async Task<T> SendAsync<T>(HttpRequestMessage request)
         {
             if (request == null)
             {
@@ -60,36 +60,36 @@ namespace Omni.BuildingBlocks.Http.Client
 
             var response = await _httpClient.SendAsync(request);
 
-            return TryDeserializeObject<TResult>(response.Content.ReadAsStringAsync().Result, nameof(this.SendAsync));
+            return TryDeserializeObject<T>(response.Content.ReadAsStringAsync().Result, nameof(this.SendAsync));
         }
 
-        public async Task<TResult> PostAsync<T, TResult>(T item, string url)
+        public async Task<T> PostAsync<T>(string url, object item)
         {
             var uri = TryGetUri(url);
             var content = GetStringContent(item);
             var response = await _httpClient.PostAsync(uri, content);
 
-            return TryDeserializeObject<TResult>(response.Content.ReadAsStringAsync().Result, nameof(this.PostAsync));
+            return TryDeserializeObject<T>(response.Content.ReadAsStringAsync().Result, nameof(this.PostAsync));
         }
 
-        public async Task<TResult> PatchAsync<T, TResult>(T item, string url)
+        public async Task<T> PatchAsync<T>(string url, object item)
         {
             var uri = TryGetUri(url);
             var content = GetStringContent(item);
             var response = await _httpClient.PatchAsync(uri, content);
 
-            return TryDeserializeObject<TResult>(response.Content.ReadAsStringAsync().Result, nameof(this.PutAsync));
+            return TryDeserializeObject<T>(response.Content.ReadAsStringAsync().Result, nameof(this.PutAsync));
         }
 
-        public async Task<TResult> GetAsync<TResult>(string url)
+        public async Task<T> GetAsync<T>(string url)
         {
             var uri = TryGetUri(url);
             var response = await _httpClient.GetAsync(uri);
 
-            return TryDeserializeObject<TResult>(response.Content.ReadAsStringAsync().Result, nameof(this.GetAsync));
+            return TryDeserializeObject<T>(response.Content.ReadAsStringAsync().Result, nameof(this.GetAsync));
         }
 
-        private StringContent GetStringContent<T>(T item)
+        private StringContent GetStringContent(object item)
         {
             var json = JsonConvert.SerializeObject(item,
                 new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
