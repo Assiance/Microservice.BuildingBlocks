@@ -19,19 +19,6 @@ namespace Omni.BuildingBlocks.Http.Client
         protected readonly ILogger _logger;
         private const string MediaType = "application/json";
 
-        public BaseHttpClient(Type childType, HttpClient httpClient, IOptions<List<HttpClientPolicy>> clientPolicies,
-            ILogger logger)
-        {
-            var client = clientPolicies.Value.GetClient(childType);
-            httpClient.BaseAddress = new Uri(client.BaseUrl);
-            httpClient.DefaultRequestHeaders
-                .Accept
-                .Add(new MediaTypeWithQualityHeaderValue(MediaType));
-
-            _httpClient = httpClient;
-            _logger = logger;
-        }
-
         public BaseHttpClient(HttpClient httpClient, ILogger logger)
         {
             httpClient.DefaultRequestHeaders

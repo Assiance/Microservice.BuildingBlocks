@@ -2,7 +2,7 @@
 {
     public class ClientConfiguration
     {
-        public string Namespace { get; set; }
+        public string Name { get; set; }
 
         public string BaseUrl { get; set; }
 

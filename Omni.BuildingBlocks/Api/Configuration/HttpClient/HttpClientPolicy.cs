@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Omni.BuildingBlocks.Api.Configuration.HttpClient
+﻿namespace Omni.BuildingBlocks.Api.Configuration.HttpClient
 {
     public class HttpClientPolicy
     {
@@ -13,7 +11,5 @@ namespace Omni.BuildingBlocks.Api.Configuration.HttpClient
         public CircuitBreakerConfiguration CircuitBreaker { get; set; }
 
         public BulkheadConfiguration Bulkhead { get; set; }
-
-        public IEnumerable<ClientConfiguration> Clients { get; set; }
     }
 }
