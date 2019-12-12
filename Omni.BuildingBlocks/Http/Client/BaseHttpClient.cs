@@ -28,6 +28,8 @@ namespace Omni.BuildingBlocks.Http.Client
 
         public HttpRequestHeaders DefaultRequestHeaders => _httpClient.DefaultRequestHeaders;
 
+        public Uri BaseAddress => _httpClient.BaseAddress;
+
         public async Task<T> PutAsync<T>(string url, object item)
         {
             var uri = TryGetUri(url);
