@@ -1,10 +1,12 @@
 ﻿using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace Omni.BuildingBlocks.Http.Client.Interfaces
 {
     public interface IBaseHttpClient
     {
+        HttpRequestHeaders DefaultRequestHeaders { get; }
         Task<T> PutAsync<T>(string url, object item);
         Task<T> PostAsync<T>(string url, object item);
         Task<T> PatchAsync<T>(string url, object item);

@@ -43,8 +43,8 @@ namespace Omni.BuildingBlocks.Authentication
                 Content = new FormUrlEncodedContent(body)
             };
 
-            var tokenResponse = await SendAsync<TokenResponse>(tokenRequest);
-            return tokenResponse?.access_token;
+            var tokenResponse = await SendAsync<OmniJwtToken>(tokenRequest);
+            return tokenResponse?.AccessToken;
         }
     }
 }

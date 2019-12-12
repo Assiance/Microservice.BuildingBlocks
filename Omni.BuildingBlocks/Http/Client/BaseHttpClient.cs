@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using Omni.BuildingBlocks.Http.Client.Interfaces;
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using Omni.BuildingBlocks.Api.Configuration.HttpClient;
-using Omni.BuildingBlocks.Http.Client.Interfaces;
 
 namespace Omni.BuildingBlocks.Http.Client
 {
     public abstract class BaseHttpClient : IBaseHttpClient
     {
-        protected readonly HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
         protected readonly ILogger _logger;
         private const string MediaType = "application/json";
 
@@ -28,6 +25,8 @@ namespace Omni.BuildingBlocks.Http.Client
             _httpClient = httpClient;
             _logger = logger;
         }
+
+        public HttpRequestHeaders DefaultRequestHeaders => _httpClient.DefaultRequestHeaders;
 
         public async Task<T> PutAsync<T>(string url, object item)
         {

@@ -4,6 +4,8 @@
     {
         public string Name { get; set; }
 
+        public string Audience { get; set; }
+
         public string BaseUrl { get; set; }
 
         public string TokenEndpointUrl { get; set; }
