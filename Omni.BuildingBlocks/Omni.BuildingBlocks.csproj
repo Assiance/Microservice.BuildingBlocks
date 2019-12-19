@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <PackageId>Omni.BuildingBlocks</PackageId>
-    <Version>1.5.2</Version>
+    <Version>1.5.3</Version>
     <Authors>Bradford Foxworth-Hill</Authors>
     <Description>Building Blocks for Omni Microservices</Description>
     <IsPackable>true</IsPackable>
