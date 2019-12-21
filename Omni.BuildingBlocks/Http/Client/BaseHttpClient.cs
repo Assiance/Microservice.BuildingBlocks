@@ -69,12 +69,10 @@ namespace Omni.BuildingBlocks.Http.Client
             return TryDeserializeObject<T>(response.Content.ReadAsStringAsync().Result, nameof(this.PutAsync));
         }
 
-        public async Task<T> DeleteAsync<T>(string url)
+        public async Task DeleteAsync(string url)
         {
             var uri = TryGetUri(url);
-            var response = await _httpClient.DeleteAsync(uri);
-
-            return TryDeserializeObject<T>(response.Content.ReadAsStringAsync().Result, nameof(this.DeleteAsync));
+            await _httpClient.DeleteAsync(uri);
         }
 
         public async Task<T> GetAsync<T>(string url)
