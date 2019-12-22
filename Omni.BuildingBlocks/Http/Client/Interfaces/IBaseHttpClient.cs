@@ -9,11 +9,14 @@ namespace Omni.BuildingBlocks.Http.Client.Interfaces
     {
         Uri BaseAddress { get; }
         HttpRequestHeaders DefaultRequestHeaders { get; }
+        Task PutAsync(string url, object item);
         Task<T> PutAsync<T>(string url, object item);
         Task<T> PostAsync<T>(string url, object item);
+        Task PatchAsync(string url, object item);
         Task<T> PatchAsync<T>(string url, object item);
         Task<T> GetAsync<T>(string url);
         Task DeleteAsync(string url);
+        Task<T> DeleteAsync<T>(string url);
         Task<T> SendAsync<T>(HttpRequestMessage request);
     }
 }

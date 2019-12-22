@@ -30,6 +30,13 @@ namespace Omni.BuildingBlocks.Http.Client
 
         public Uri BaseAddress => _httpClient.BaseAddress;
 
+        public async Task PutAsync(string url, object item)
+        {
+            var uri = TryGetUri(url);
+            var content = GetStringContent(item);
+            await _httpClient.PutAsync(uri, content);
+        }
+
         public async Task<T> PutAsync<T>(string url, object item)
         {
             var uri = TryGetUri(url);
@@ -60,6 +67,13 @@ namespace Omni.BuildingBlocks.Http.Client
             return TryDeserializeObject<T>(response.Content.ReadAsStringAsync().Result, nameof(this.PostAsync));
         }
 
+        public async Task PatchAsync(string url, object item)
+        {
+            var uri = TryGetUri(url);
+            var content = GetStringContent(item);
+            await _httpClient.PatchAsync(uri, content);
+        }
+
         public async Task<T> PatchAsync<T>(string url, object item)
         {
             var uri = TryGetUri(url);
@@ -73,6 +87,14 @@ namespace Omni.BuildingBlocks.Http.Client
         {
             var uri = TryGetUri(url);
             await _httpClient.DeleteAsync(uri);
+        }
+
+        public async Task<T> DeleteAsync<T>(string url)
+        {
+            var uri = TryGetUri(url);
+            var response = await _httpClient.DeleteAsync(uri);
+
+            return TryDeserializeObject<T>(response.Content.ReadAsStringAsync().Result, nameof(this.DeleteAsync));
         }
 
         public async Task<T> GetAsync<T>(string url)
