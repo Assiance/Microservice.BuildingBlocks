@@ -28,7 +28,7 @@ namespace Omni.BuildingBlocks.Shared.UserProvider
 
             if (string.IsNullOrEmpty(authToken)) return userProviderModel;
 
-            var profileToken = new JwtSecurityTokenHandler().ReadJwtToken(authToken);
+            var profileToken = new JwtSecurityTokenHandler().ReadJwtToken(authToken.Replace("Bearer ", string.Empty));
             userProviderModel.Email = profileToken.Claims.FirstOrDefault(c => c.Type == UserTokenProviderClaims.Email)?.Value;
 
             return userProviderModel;
