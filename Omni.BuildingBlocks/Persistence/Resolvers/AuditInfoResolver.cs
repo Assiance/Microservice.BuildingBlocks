@@ -19,9 +19,9 @@ namespace Omni.BuildingBlocks.Persistence.Resolvers
         {
             if (entry.Entity is IAuditInfo audit)
             {
-                var nickname = _currentUserService.GetCurrentUser().Nickname;
+                var email = _currentUserService.GetCurrentUser().Email;
                 var now = DateTime.UtcNow;
-                var user = !string.IsNullOrEmpty(nickname) ? nickname : "SYSTEM";
+                var user = !string.IsNullOrEmpty(email) ? email : "SYSTEM";
 
                 switch (entry.State)
                 {

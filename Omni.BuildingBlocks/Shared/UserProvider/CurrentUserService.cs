@@ -19,20 +19,17 @@ namespace Omni.BuildingBlocks.Shared.UserProvider
         {
             var request = _httpContextAccessor.HttpContext.Request;
 
-            var userProfileTokenExist = request.Headers.TryGetValue(KnownHttpHeaders.ProfileToken, out StringValues requestHeaderValue);
+            var authTokenExists = request.Headers.TryGetValue(KnownHttpHeaders.Authorization, out StringValues requestHeaderValue);
             var userProviderModel = new UserProviderModel();
 
-            if (!userProfileTokenExist) return userProviderModel;
+            if (!authTokenExists) return userProviderModel;
 
-            var userProfileToken = requestHeaderValue.FirstOrDefault();
+            var authToken = requestHeaderValue.FirstOrDefault();
 
-            if (string.IsNullOrEmpty(userProfileToken)) return userProviderModel;
+            if (string.IsNullOrEmpty(authToken)) return userProviderModel;
 
-            var profileToken = new JwtSecurityTokenHandler().ReadJwtToken(userProfileToken);
-            userProviderModel.Name = profileToken.Claims.FirstOrDefault(c => c.Type == UserTokenProviderClaims.Name)?.Value;
+            var profileToken = new JwtSecurityTokenHandler().ReadJwtToken(authToken);
             userProviderModel.Email = profileToken.Claims.FirstOrDefault(c => c.Type == UserTokenProviderClaims.Email)?.Value;
-            userProviderModel.Nickname = profileToken.Claims.FirstOrDefault(c => c.Type == UserTokenProviderClaims.NickName)?.Value;
-            userProviderModel.Picture = profileToken.Claims.FirstOrDefault(c => c.Type == UserTokenProviderClaims.Picture)?.Value;
 
             return userProviderModel;
         }
