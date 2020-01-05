@@ -1,4 +1,4 @@
-﻿namespace Omni.BuildingBlocks.Api.Configuration.HttpClient
+﻿namespace Omni.BuildingBlocks.Api.Configuration.HttpClient.Models
 {
     public class HttpClientPolicy
     {

@@ -37,8 +37,10 @@ namespace Omni.BuildingBlocks.Http.Handlers
             {
                 _logger.LogWarning($"{KnownHttpHeaders.Authorization} header is not set.");
             }
-
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            else
+            {
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            }
         }
     }
 }

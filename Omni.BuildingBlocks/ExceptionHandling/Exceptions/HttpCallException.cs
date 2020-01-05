@@ -28,7 +28,7 @@ namespace Omni.BuildingBlocks.ExceptionHandling.Exceptions
             Data["ResponseBody"] = responseBody;
         }
 
-        private static string BuildMessage(Uri requestUri, HttpMethod requestMethod, HttpStatusCode statusCode,
+        public static string BuildMessage(Uri requestUri, HttpMethod requestMethod, HttpStatusCode statusCode,
             string reasonPhrase)
         {
             return $"Request {requestMethod} {requestUri} failed with {(int) statusCode} {reasonPhrase}";

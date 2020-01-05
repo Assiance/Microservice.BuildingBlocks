@@ -39,8 +39,10 @@ namespace Omni.BuildingBlocks.Http.Handlers
             {
                 _logger.LogWarning($"{KnownHttpHeaders.CorrelationId} header is not set.");
             }
-
-            request.Headers.Add(KnownHttpHeaders.CorrelationId, correlationId);
+            else
+            {
+                request.Headers.Add(KnownHttpHeaders.CorrelationId, correlationId);
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Omni.BuildingBlocks.Api.Configuration.HttpClient;
+using Omni.BuildingBlocks.Api.Configuration.HttpClient.Models;
 using Omni.BuildingBlocks.Authentication;
 
 namespace Omni.BuildingBlocks.Http.Handlers
