@@ -124,8 +124,6 @@ namespace Omni.BuildingBlocks.Http.Client
         {
             if (string.IsNullOrWhiteSpace(url))
                 throw new ArgumentNullException(nameof(url));
-            if (!Uri.IsWellFormedUriString(url, uriKind))
-                throw new ArgumentException("URI is not well formed.", nameof(url));
         }
 
         private T TryDeserializeObject<T>(string jsonObject, string methodName)
