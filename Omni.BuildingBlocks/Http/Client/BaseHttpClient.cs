@@ -30,6 +30,28 @@ namespace Omni.BuildingBlocks.Http.Client
 
         public Uri BaseAddress => _httpClient.BaseAddress;
 
+        public async Task SendAsync(HttpRequestMessage request)
+        {
+            if (request == null)
+            {
+                throw new ArgumentNullException(nameof(HttpResponseMessage));
+            }
+
+            await _httpClient.SendAsync(request);
+        }
+
+        public async Task<T> SendAsync<T>(HttpRequestMessage request)
+        {
+            if (request == null)
+            {
+                throw new ArgumentNullException(nameof(HttpResponseMessage));
+            }
+
+            var response = await _httpClient.SendAsync(request);
+
+            return TryDeserializeObject<T>(response.Content.ReadAsStringAsync().Result, nameof(this.SendAsync));
+        }
+
         public async Task PutAsync(string url, object item)
         {
             var uri = TryGetUri(url);
@@ -46,16 +68,11 @@ namespace Omni.BuildingBlocks.Http.Client
             return TryDeserializeObject<T>(response.Content.ReadAsStringAsync().Result, nameof(this.PutAsync));
         }
 
-        public async Task<T> SendAsync<T>(HttpRequestMessage request)
+        public async Task PostAsync(string url, object item)
         {
-            if (request == null)
-            {
-                throw new ArgumentNullException(nameof(HttpResponseMessage));
-            }
-
-            var response = await _httpClient.SendAsync(request);
-
-            return TryDeserializeObject<T>(response.Content.ReadAsStringAsync().Result, nameof(this.SendAsync));
+            var uri = TryGetUri(url);
+            var content = GetStringContent(item);
+            await _httpClient.PostAsync(uri, content);
         }
 
         public async Task<T> PostAsync<T>(string url, object item)
