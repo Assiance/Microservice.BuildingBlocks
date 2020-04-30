@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Omni.BuildingBlocks.Persistence
 {
-    public abstract class BaseEntity<TKey>
+    public abstract class BaseEntity<TKey> : IBaseEntity
     {
         public TKey Id { get; set; }
 
