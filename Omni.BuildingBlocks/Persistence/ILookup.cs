@@ -1,4 +1,4 @@
-﻿namespace Omni.BuildingBlocks.Shared
+﻿namespace Omni.BuildingBlocks.Persistence
 {
     public interface ILookup<T>
     {
